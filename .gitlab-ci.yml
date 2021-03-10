@@ -1,0 +1,109 @@
+
+# https://docs.gitlab.com/ee/ci/yaml/README.html
+
+---
+
+default:
+  image:
+    reg.vipex.cc:80/library/golang:1.16-alpine3.12.diy
+  before_script:
+    - pwd
+    # - if [ -d "$BIN_PROJECT_PATH" ]; then rm -rf $BIN_PROJECT_PATH; fi; mkdir -p $BIN_PROJECT_PATH
+    # - env > $BIN_PROJECT_PATH/env.log
+    - if [ ! -d "$BIN_PROJECT_PATH" ]; then mkdir -p $BIN_PROJECT_PATH; fi; env >> $BIN_PROJECT_PATH/env.log
+    - echo -e "\n\n\n" >> $BIN_PROJECT_PATH/env.log
+    - echo -e "
+      [url \"http://git:dGeXMfxziUHRdS9DgvPe@lab.xasea2.loc\"]\n
+      \tinsteadOf = http://lab.xasea2.loc" \
+      > /root/.gitconfig;sed -i 's/^ //g' /root/.gitconfig  # > $CI_PROJECT_DIR/.gitconfig
+    - cat /root/.gitconfig # $CI_PROJECT_DIR/.gitconfig
+  after_script:
+    - ls -laF $BIN_PROJECT_PATH
+
+variables:
+  # CHART_NAME: go-lang
+  # INGRESS_ENABLED: "false"
+  # INGRESS_HOST: chart-example.local
+  # REPLICA_COUNT: 1
+  # RUNTIME_IMG: core.reg.vipex.cc:80/library/golang
+  BIN_PROJECT_PATH:
+    $CI_BUILDS_DIR/publish/$CI_PROJECT_PATH/$GITLAB_USER_ID-$CI_PROJECT_NAME-$CI_PIPELINE_ID
+  # GIT_CLONE_PATH: $CI_BUILDS_DIR/
+  # KUBERNETES_SERVICE_ACCOUNT_OVERWRITE: job-admin
+  # CI_DOCKERFILE: "FROM core.reg.vipex.cc:80/library/golang:code_tag_version_num\\nARG initScript\\nCOPY . /stg/\\nCMD [\\\"\\$\\{initScript\\}\\\"]"
+  # CI_DOCKERFILE: 'FROM reg.vipex.cc:80/library/golang:code_tag_version_num\nARG initScript\nCOPY . /stg/\nCMD [\"\${initScript}\"]'
+  CI_DOCKERFILE: 'FROM reg.vipex.cc:80/library/golang:code_tag_version_num\nCOPY . /stg/\nCMD [ "/stg/$CI_PROJECT_NAME" ]'
+  # CI_DOCKERFILE: dockerfile-tpl
+  DOCKER_BUILD_SCRIPT: /stg/tools/docker-build-internet-images.sh
+  HELM_LOCAL_REPO: /stg/tools/helm-add-local-repo.sh
+  K8S_DEPLAY_APP: /stg/tools/k8s-deplay-app.sh
+  GOINSECURE: '*.xasea2.loc'
+  GOPROXY: 'https://goproxy.cn,direct'
+
+cache:
+    paths:
+      # - /stg/publish
+
+stages:
+  - project_rdy
+  # - install_dep
+  # - pull_project_code
+  # - get_service_cfg
+  - build_pkg
+  - unit_test
+  - build_imgage
+  - k8s_deplay_app
+  # - create_tag
+
+# project_rdy:
+#   stage: git_config
+#   script:
+#     - echo -e ""
+
+# install_pkgs:
+#   stage: install_dep
+#   script:
+#     - apk add --no-cache pkgs*
+
+# get_code:
+#   stage: pull_project_code
+#   script:
+#     - git clone http://root:psw@lab.pri.gitlab.loc/root/project*.git -b master /stg
+
+# svn_config:
+#   stage: get_service_cfg
+#   script:
+#     - svn co svn://svn.vipex.cc/cfg/project*/ /stg/publish/ --username administr --password sVn@vipex.cc --no-auth-cache # checkout
+
+build_bin:
+  stage: build_pkg
+  script:
+    - go build -o $BIN_PROJECT_PATH/
+
+unit_test:
+  stage: unit_test
+  script:
+    - sh -c "nohup $BIN_PROJECT_PATH/$CI_PROJECT_NAME > $BIN_PROJECT_PATH/test.log 2>&1 &"
+    - if [ "$(curl http://127.0.0.1:8080/health -s|jq .status)" != "ok" ]; then exit; fi # 获取 health api 特定返回值做以校验(需要 curl,jq 包)
+    # 更复杂的单元测试脚本在此自定义或者修改相应的 configmap，定义如下脚本：
+    # - sh /stg/tools/util_test_health_check.sh
+
+build_imgage:
+  stage: build_imgage
+  script:
+    - /bin/bash /stg/tools/docker-build-internet-images.sh
+
+k8s_deplay_app:
+  stage: k8s_deplay_app
+  script:
+    - sh /stg/tools/k8s-deplay-app.sh
+
+# create_tag:
+#   stage: create_tag
+#   script:
+
+---
+
+# 
+
+---
