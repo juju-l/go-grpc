@@ -129,7 +129,7 @@ func file_user_proto_init() {
 	if File_user_proto != nil {
 		return
 	}
-	//file_result_proto_init()
+	// file_result_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_user_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*User); i {

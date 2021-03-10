@@ -1,9 +1,8 @@
 syntax = "proto3";
 
-import "google/protobuf/struct.proto";
-import "gitee.com/vipex/golang-grpc/api/proto/base";
+import "result.proto"; // 导入 proto
 
-option go_package = "gitee.com/vipex/golang-grpc/gen";
+option go_package = "gitee.com/vipex/go-grpc/gen";
 
 package proto;
 
@@ -13,5 +12,5 @@ message User {
 }
 
 service UserGrpc {
-  rpc Login (User) returns (proto.BaseResult) {}
+  rpc Login (User) returns (BaseResult) {}
 }

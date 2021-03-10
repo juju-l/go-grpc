@@ -1,8 +1,9 @@
 syntax = "proto3";
 
-import "google/protobuf/struct.proto";
+import "google/protobuf/any.proto";
+// import "google/protobuf/struct.proto";
 
-option go_package = "gitee.com/vipex/golang-grpc/gen";
+option go_package = "gitee.com/vipex/go-grpc/gen";
 
 package proto;
 
@@ -18,7 +19,8 @@ message ErrorDes {
 
 message BaseResult {
   Result result = 1;
-  google.protobuf.Struct data = 2;
+  // google.protobuf.Struct data = 2;
+  google.protobuf.Any data = 2;
   ErrorDes errorDes = 3;
   // google.protobuf.Any other = 4;
 }
