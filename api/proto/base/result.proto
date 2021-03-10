@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option go_package = "gitee.com/vipex/golang-grpc/gen";
+
+package proto;
+
+message Result {
+  int32 errCode = 1;
+  string errMsg = 2;
+}
+
+message ErrorDes {
+  string userMsg = 1;
+  string codeMsg = 2;
+}
+
+message BaseResult {
+  Result result = 1;
+  google.protobuf.Struct data = 2;
+  ErrorDes errorDes = 3;
+  // google.protobuf.Any other = 4;
+}
