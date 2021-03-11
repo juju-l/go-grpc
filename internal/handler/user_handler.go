@@ -11,7 +11,7 @@ func RegisterUser(s server.Server) {
 	user.RegisterUserGrpcHandler(s, *new(user.UserGrpcHandler))
 }
 
-func (s *Server) Login(ctx context.Context, in *user.User) (* /*base*/ user.BaseResult, error) {
+func (s *UserHandler) Login(ctx context.Context, in *user.User) (* /*base*/ user.BaseResult, error) {
 	var result = & /*base*/ user.BaseResult{}
 	result.Result = & /*base*/ user.Result{ErrCode: 0, ErrMsg: "ok"}
 	if in.User == "admin" && in.Pswd == "654321" {
@@ -22,6 +22,6 @@ func (s *Server) Login(ctx context.Context, in *user.User) (* /*base*/ user.Base
 }
 
 //
-type Server struct {
+type UserHandler struct {
 	// user.UnimplementedUserGrpcHandler
 }
