@@ -1,17 +1,35 @@
 package main
 
 import (
-	"google.golang.org/grpc"
-	"net"
-	pb "gitee.com/vipex/go-grpc/gen/business/user"
-	h "gitee.com/vipex/go-grpc/internal/handler"
+	"gitee.com/vipex/go-grpc/configs/etcd"
+	"gitee.com/vipex/go-grpc/internal/handler"
+	"gitee.com/vipex/go-grpc/utils"
+	"github.com/micro/go-micro/v2"
+	"github.com/micro/go-micro/v2/logger"
+	"github.com/micro/go-micro/v2/registry"
+	"github.com/micro/go-micro/v2/registry/etcd"
 )
 
 func main() {
-	lis, _ := net.Listen("tcp", ":50051")
+	microReg := etcd.NewRegistry(
+		registry.Addrs((*utils.GetGlobal())["etcd"].(*configs.EtcdAddrCfg).Addr),
+	)
 
-	s := grpc.NewServer()
-	pb.RegisterUserGrpcServer(s, &h.Server{})
+	// New Service
+	service := micro.NewService(
+		micro.Name("sea2.micro.api.client_manage"),
+		micro.Version("latest"),
+		micro.Registry(microReg),
+	)
 
-	s.Serve(lis)
+	// Initialise service
+	service.Init()
+
+	// Register Handler
+	handler.RegisterUser(service.Server())
+
+	// Run service
+	if err := service.Run(); err != nil {
+		logger.Fatal(err)
+	}
 }

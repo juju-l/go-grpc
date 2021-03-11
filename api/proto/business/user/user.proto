@@ -1,16 +1,32 @@
 syntax = "proto3";
 
-import "result.proto"; // 导入 proto
+// import "api/proto/base/result.proto";
 
 option go_package = "gitee.com/vipex/go-grpc/gen";
 
 package proto;
 
-message User {
-  string user = 1;
-  string pswd = 2;
+message Result {
+  int32 errCode = 1;
+  string errMsg = 2;
+}
+
+message ErrorDes {
+  string userMsg = 1;
+  string codeMsg = 2;
+}
+
+message BaseResult {
+  Result result = 1;
+  bool data = 2;
+  ErrorDes errorDes = 3;
 }
 
 service UserGrpc {
   rpc Login (User) returns (BaseResult) {}
+}
+
+message User {
+  string user = 1;
+  string pswd = 2;
 }
