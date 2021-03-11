@@ -1,0 +1,9 @@
+
+etcd: "127.0.0.1:2379"
+dbConnStr: "host=192.168.253.6 user=postgres password=123456 dbname=test port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+oss:
+  accessKeyId: "valAccessKeyId"
+  accessKeySecret: "valAccessKeySecret"
+  endpoint: "valEndpoint"
+goMicro: true
+test: "i'm test"
