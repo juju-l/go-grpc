@@ -12,10 +12,12 @@ import (
 	// "fmt"
 )
 
-var listenAddr string = ""
-	flag.StringVar(&listenAddr, "addr", ":8080", "app start listen addr..."); flag.Parse()
-
 func main() {
+	// Service Listen Address Param
+	listenAddr := ""
+			flag.StringVar(&listenAddr, "addr", ":8080", "app start listen addr...") // 获取参数值
+	flag.Parse() // 
+	
 	// New Registry
 	etcdRegistry := etcd.NewRegistry(
 		registry.Addrs((*utils.GetAppConfigs()).Etcd),
