@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	pri "gitee.com/vipex/go-grpc/internal/domain/interface"
 	srv "gitee.com/vipex/go-grpc/internal/service"
 	"gitee.com/vipex/go-grpc/utils"
@@ -8,7 +9,11 @@ import (
 	log "github.com/micro/go-micro/v2/logger"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-micro/v2/registry/etcd"
+	// "fmt"
 )
+
+var listenAddr string = ""
+	flag.StringVar(&listenAddr, "addr", ":8080", "app start listen addr..."); flag.Parse()
 
 func main() {
 	// New Registry
@@ -20,6 +25,7 @@ func main() {
 	service := micro.NewService(
 		micro.Name("cc.vipex.service.o2"),
 		micro.Version("latest"),
+		micro.Address(listenAddr),
 		micro.Registry(etcdRegistry),
 	)
 
