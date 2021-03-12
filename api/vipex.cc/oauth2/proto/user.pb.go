@@ -4,7 +4,7 @@
 // 	protoc        v3.15.5
 // source: user.proto
 
-package v1_proto
+package pb
 
 import (
 	proto "github.com/golang/protobuf/proto"
