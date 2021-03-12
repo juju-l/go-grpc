@@ -1,46 +1,32 @@
 package utils
 
 import (
-	"gitee.com/vipex/go-grpc/internal/domain/dao"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"gitee.com/vipex/go-grpc/internal/domain/dao" // 
 	"sync"
 )
 
-var inited bool = false
-var rwMutex sync.RWMutex
-var globalDef *map[string]interface{} = nil
+var inited bool = false; var globalDef *map[string]interface{}/*存储器*/ = nil; var rwMutex sync.RWMutex // 
 
 func InitGlobal() {
-	rwMutex.Lock()
-	defer rwMutex.Unlock()
-	if inited {
-		return
-	}
+	rwMutex.Lock(); defer rwMutex.Unlock(); if inited { return } // 提供锁
 
 	_globalDef := make(map[string]interface{})
 	configs := new(dao.AppConfigs)
 
-	_configs, err := ioutil.ReadFile("./configs/app_configs.yml")
+	cfg, err := ioutil.ReadFile("./configs/app_configs.yml") 
 	if err == nil {
-		if yaml.Unmarshal(_configs, &configs) != nil {
-			// 出错
+		if yaml.Unmarshal(cfg, &configs) != nil {
+			/* 出错处理 */
 		}
 	}
 
-	_globalDef["configs"] = configs
-
-	globalDef = &_globalDef
-
-	inited = true
+	_globalDef["configs"] = configs; globalDef = &_globalDef; inited = true // 
 }
 
 func GetAppConfigs() *dao.AppConfigs {
-	if globalDef == nil {
-		InitGlobal()
-	}
-	var appConfigs = (*globalDef)["configs"].(*dao.AppConfigs)
-	return appConfigs
+	if globalDef == nil { InitGlobal() }; return (*globalDef)["configs"].(*dao.AppConfigs)
 }
 
 func GetGlobal() *map[string]interface{} {
