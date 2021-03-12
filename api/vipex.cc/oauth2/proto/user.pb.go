@@ -30,8 +30,8 @@ type Result struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ErrCode int32  `protobuf:"varint,1,opt,name=errCode,proto3" json:"errCode,omitempty"`
-	ErrMsg  string `protobuf:"bytes,2,opt,name=errMsg,proto3" json:"errMsg,omitempty"`
+	ErrCode int32  `protobuf:"varint,1,opt,name=errCode,proto3" json:"errCode"`
+	ErrMsg  string `protobuf:"bytes,2,opt,name=errMsg,proto3" json:"errMsg"`
 }
 
 func (x *Result) Reset() {
@@ -85,8 +85,8 @@ type ErrorDes struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserMsg string `protobuf:"bytes,1,opt,name=userMsg,proto3" json:"userMsg,omitempty"`
-	CodeMsg string `protobuf:"bytes,2,opt,name=codeMsg,proto3" json:"codeMsg,omitempty"`
+	UserMsg string `protobuf:"bytes,1,opt,name=userMsg,proto3" json:"userMsg"`
+	CodeMsg string `protobuf:"bytes,2,opt,name=codeMsg,proto3" json:"codeMsg"`
 }
 
 func (x *ErrorDes) Reset() {
@@ -140,9 +140,9 @@ type BaseResult struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result   *Result   `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
-	Data     bool      `protobuf:"varint,2,opt,name=data,proto3" json:"data,omitempty"`
-	ErrorDes *ErrorDes `protobuf:"bytes,3,opt,name=errorDes,proto3" json:"errorDes,omitempty"`
+	Result   *Result   `protobuf:"bytes,1,opt,name=result,proto3" json:"result"`
+	Data     bool      `protobuf:"varint,2,opt,name=data,proto3" json:"data"`
+	ErrorDes *ErrorDes `protobuf:"bytes,3,opt,name=errorDes,proto3" json:"errorDes"`
 }
 
 func (x *BaseResult) Reset() {
@@ -203,8 +203,8 @@ type User struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	User string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	Pswd string `protobuf:"bytes,2,opt,name=pswd,proto3" json:"pswd,omitempty"`
+	User string `protobuf:"bytes,1,opt,name=user,proto3" json:"user"`
+	Pswd string `protobuf:"bytes,2,opt,name=pswd,proto3" json:"pswd"`
 }
 
 func (x *User) Reset() {
