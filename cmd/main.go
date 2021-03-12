@@ -9,14 +9,14 @@ import (
 	log "github.com/micro/go-micro/v2/logger"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-micro/v2/registry/etcd"
-	// "fmt"
+	"fmt"
 )
 
 func main() {
 	// Service Listen Address Param
 	listenAddr := ""
-			flag.StringVar(&listenAddr, "addr", ":8080", "app start listen addr...") // 获取参数值
-	flag.Parse() // 
+	flag.StringVar(&listenAddr, "addr", ":8080", "app start listen addr..."); flag.Parse() // 获取参数值
+	fmt.Println(listenAddr)
 	
 	// New Registry
 	etcdRegistry := etcd.NewRegistry(
