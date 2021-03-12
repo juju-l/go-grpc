@@ -8,11 +8,11 @@ import (
 )
 
 func (rpc *UserGrpcHandler) Login(ctx context.Context, user *pb.User, baseResult *pb.BaseResult) error {
-	var rst = pb.BaseResult{}
-	if r, err := new(usecase.UserUseCase).Login(&dao.UserReq{user.User, user.Pswd}); err != nil {
+	var rst = &pb.BaseResult{}
+	if r, err := new(usecase.UserUseCase).Login(&dao.UserReq{user.User, user.Pswd}); err == nil {
 		rst.Data = r
 	}
-	baseResult = &rst; return nil
+	baseResult = rst; return nil
 }
 
 type UserGrpcHandler struct {
