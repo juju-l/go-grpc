@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	v1_proto "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto"
-	v1_interface "gitee.com/vipex/go-grpc/internal/domain/interface"
+	v1_interface "gitee.com/vipex/go-grpc/internal/domain/v1/v1.interface"
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-micro/v2/registry/etcd"
@@ -29,9 +29,9 @@ func main() {
 	})
 
 	if err != nil {
-		fmt.v1_interfacentln(err)
+		fmt.Println(err)
 		return
 	}
 
-	fmt.v1_interfacentln(rsp)
+	fmt.Println(rsp)
 }
