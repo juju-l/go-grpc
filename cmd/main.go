@@ -30,7 +30,6 @@ func main() {
 		micro.Address(listenAddr),
 		micro.Registry(etcdRegistry),
 	)
-
 	// Initialise service
 	service.Init()
 
