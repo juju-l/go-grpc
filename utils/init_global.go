@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"gitee.com/vipex/go-grpc/internal/domain/dao"
+	v1_dao "gitee.com/vipex/go-grpc/internal/domain/v1/v1.dao"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"sync"
@@ -19,7 +19,7 @@ func InitGlobal() {
 	}
 
 	_globalDef := make(map[string]interface{})
-	configs := new(dao.AppConfigs)
+	configs := new(v1_dao.AppConfigs)
 
 	_configs, err := ioutil.ReadFile("./configs/app_configs.yml")
 	if err == nil {
@@ -35,11 +35,11 @@ func InitGlobal() {
 	inited = true
 }
 
-func GetAppConfigs() *dao.AppConfigs {
+func GetAppConfigs() *v1_dao.AppConfigs {
 	if globalDef == nil {
 		InitGlobal()
 	}
-	var appConfigs = (*globalDef)["configs"].(*dao.AppConfigs)
+	var appConfigs = (*globalDef)["configs"].(*v1_dao.AppConfigs)
 	return appConfigs
 }
 

@@ -1,4 +1,4 @@
-package model
+package v1_model
 
 type User struct { // https://gorm.io/docs/models.html
 	Id   int    `gorm:"column:id;type:int;comment:标识;primaryKey" json:"id"`

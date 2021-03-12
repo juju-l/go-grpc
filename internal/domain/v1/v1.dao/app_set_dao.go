@@ -1,4 +1,4 @@
-package dao
+package v1_dao
 
 type AppConfigs struct {
 	Etcd      string    `json:"etcd"`                       //
