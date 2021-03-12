@@ -1,4 +1,4 @@
-package v1
+package v1_service
 
 //import (
 //	v1_proto "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto"
