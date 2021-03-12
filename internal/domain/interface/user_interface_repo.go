@@ -1,11 +1,4 @@
 package interfacepri
 
-type UserRepoistory interface {
-	GetCrudRepo()
-	Add()
-	Delete()
-	Update()
-	Select()
-	GetQueryableByPage()
-	ConvertPages()
+type UserInterfaceRepo interface {
 }

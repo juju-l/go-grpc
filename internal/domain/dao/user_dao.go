@@ -1,7 +1,6 @@
 package dao
 
-type User struct {
-	Id int `json:"id"`
+type UserReq struct {
 	User string `json:"user"`
-	V bool `json:"v"`
+	Pswd string `json:"pswd"`
 }
