@@ -3,6 +3,8 @@
 
 package interfacepri
 
+import pb "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto"
+
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
@@ -42,7 +44,7 @@ func NewUserGrpcEndpoints() []*api.Endpoint {
 // Client API for UserGrpc service
 
 type UserGrpcService interface {
-	Login(ctx context.Context, in *User, opts ...client.CallOption) (*BaseResult, error)
+	Login(ctx context.Context, in *pb.User, opts ...client.CallOption) (*pb.BaseResult, error)
 }
 
 type userGrpcService struct {
@@ -57,9 +59,9 @@ func NewUserGrpcService(name string, c client.Client) UserGrpcService {
 	}
 }
 
-func (c *userGrpcService) Login(ctx context.Context, in *User, opts ...client.CallOption) (*BaseResult, error) {
+func (c *userGrpcService) Login(ctx context.Context, in *pb.User, opts ...client.CallOption) (*pb.BaseResult, error) {
 	req := c.c.NewRequest(c.name, "UserGrpc.Login", in)
-	out := new(BaseResult)
+	out := new(pb.BaseResult)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -70,12 +72,12 @@ func (c *userGrpcService) Login(ctx context.Context, in *User, opts ...client.Ca
 // Server API for UserGrpc service
 
 type UserGrpcHandler interface {
-	Login(context.Context, *User, *BaseResult) error
+	Login(context.Context, *pb.User, *pb.BaseResult) error
 }
 
 func RegisterUserGrpcHandler(s server.Server, hdlr UserGrpcHandler, opts ...server.HandlerOption) error {
 	type userGrpc interface {
-		Login(ctx context.Context, in *User, out *BaseResult) error
+		Login(ctx context.Context, in *pb.User, out *pb.BaseResult) error
 	}
 	type UserGrpc struct {
 		userGrpc
@@ -88,6 +90,6 @@ type userGrpcHandler struct {
 	UserGrpcHandler
 }
 
-func (h *userGrpcHandler) Login(ctx context.Context, in *User, out *BaseResult) error {
+func (h *userGrpcHandler) Login(ctx context.Context, in *pb.User, out *pb.BaseResult) error {
 	return h.UserGrpcHandler.Login(ctx, in, out)
 }
