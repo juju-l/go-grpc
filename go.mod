@@ -5,8 +5,9 @@ go 1.16
 replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
 
 require (
-	github.com/golang/protobuf v1.4.0
+	github.com/golang/protobuf v1.4.0 // indirect
 	gopkg.in/yaml.v2 v2.2.4
+	google.golang.org/protobuf v1.22.0 // indirect
 )
 
 require github.com/micro/go-micro/v2 v2.9.1 // 核心框架

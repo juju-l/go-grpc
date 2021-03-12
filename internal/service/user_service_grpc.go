@@ -1,5 +1,5 @@
 package service
-//
+
 //import (
 //	pb "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto"
 //	"gitee.com/vipex/go-grpc/internal/domain/dao"
