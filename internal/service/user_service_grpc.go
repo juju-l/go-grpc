@@ -9,7 +9,9 @@ import (
 
 func (rpc *UserServiceGrpc) Login(ctx context.Context, user *pb.User) (*pb.BaseResult, error) {
 	var rst = &pb.BaseResult{}
-	if r, err := new(usecase.UserUseCase).Login(&dao.UserReq{user.User, user.Pswd}); err == nil { rst.Data = r }
+	if r, err := new(usecase.UserUseCase).Login(&dao.UserReq{user.User, user.Pswd}); err == nil { // 
+		rst.Data = r
+	}
 	return rst, nil
 }
 
