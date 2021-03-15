@@ -73,7 +73,7 @@ func _UserGrpc_Login_Handler(srv interface{}, ctx context.Context, dec func(inte
 
 var _UserGrpc_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "pb.UserGrpc",
-	HandlerType: (*pb.UserGrpcServer)(nil),
+	HandlerType: (*UserGrpcServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Login",
