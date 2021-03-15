@@ -6,7 +6,7 @@ require google.golang.org/grpc v1.27.0 // indirect
 replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
 
 require (
-	github.com/golang/protobuf v1.2.0 // 
+	github.com/golang/protobuf v1.4.0 // 
 	gopkg.in/yaml.v2 v2.2.4
 	// google.golang.org/protobuf v1.23.0 // 
 )
