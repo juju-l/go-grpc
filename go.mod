@@ -2,6 +2,7 @@ module gitee.com/vipex/go-grpc
 
 go 1.16
 
+require google.golang.org/grpc v1.27.0 // indirect
 replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
 
 require (
