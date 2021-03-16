@@ -1,4 +1,4 @@
-package v1_dao
+package dao
 
 type OssConfig struct {
 	AccessKeyId     string `json:"accessKeyId" yaml:"accessKeyId"`
