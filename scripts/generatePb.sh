@@ -1,4 +1,4 @@
-rm -rf go-grpc&&mkdir go-grpc
+
 docker run --rm -it -v `pwd`/go-grpc:/stg -v /etc/apk/repositories:/etc/apk/repositories -w /stg -e GOPROXY=https://goproxy.cn,direct alpine:3.12 sh -c "export PATH=\$PATH:/root/go/bin;sh"
 
 apk add --no-cache git go protoc && git clone https://gitee.com/vipex/go-grpc.git . && git checkout develop && rm -f go.mod go.sum api/vipex.cc/oauth2/proto/*.pb.go internal/domain/interface/*.pb.go
