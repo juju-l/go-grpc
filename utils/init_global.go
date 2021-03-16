@@ -4,6 +4,7 @@ import (
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"gitee.com/vipex/go-grpc/internal/domain/dao" // 
+	"github.com/shima-park/agollo"
 	"sync"
 )
 
@@ -15,11 +16,21 @@ func InitGlobal() {
 	_globalDef := make(map[string]interface{})
 	configs := new(dao.AppConfigs)
 
-	cfg, err := ioutil.ReadFile("./configs/app_configs.yml") 
-	if err == nil {
-		if yaml.Unmarshal(cfg, &configs) != nil {
-			/* 出错处理 */
+	apolloCfg, err := agollo.New("dev.cfg.vipex.cc", "cc.vipex.service.o2",
+		agollo.AutoFetchOnCacheMiss(),
+		agollo.FailTolerantOnBackupExists(),
+	)
+	
+	if err != nil {
+		cfg, err := ioutil.ReadFile("./configs/app_configs.yml") 
+		if err == nil {
+			if yaml.Unmarshal(cfg, &configs) != nil {
+				/* 出错处理 */
+			}
 		}
+	} else {
+		cfg := []byte(apolloCfg.GetNameSpace("application")["app_configs"].(string))
+		yaml.Unmarshal(cfg, &configs)
 	}
 
 	_globalDef["configs"] = configs; globalDef = &_globalDef; inited = true // 
