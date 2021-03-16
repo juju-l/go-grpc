@@ -78,13 +78,14 @@ stages:
 build_bin:
   stage: build_pkg
   script:
-    - go build -o $BIN_PROJECT_PATH/
+    # - go build -o $BIN_PROJECT_PATH/ -ldflags "-s -w" -tags "-tag v1.0.0" cmd/main.go # 完整参数
+    - go build -o $BIN_PROJECT_PATH/$CI_PROJECT_NAME cmd/main.go
 
 unit_test:
   stage: unit_test
   script:
     - sh -c "nohup $BIN_PROJECT_PATH/$CI_PROJECT_NAME > $BIN_PROJECT_PATH/test.log 2>&1 &"
-    - if [ "$(curl http://127.0.0.1:8080/health -s|jq .status)" != "ok" ]; then exit; fi # 获取 health api 特定返回值做以校验(需要 curl,jq 包)
+    # - if [ "$(curl http://127.0.0.1:8080/health -s|jq .status)" != "ok" ]; then exit; fi # 获取 health api 特定返回值做以校验(需要 curl,jq 包)
     # 更复杂的单元测试脚本在此自定义或者修改相应的 configmap，定义如下脚本：
     # - sh /stg/tools/util_test_health_check.sh
 
