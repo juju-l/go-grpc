@@ -2,8 +2,13 @@ package main
 
 import (
 	"context"
+<<<<<<< HEAD
 	v1_proto "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto"
 	v1_interface "gitee.com/vipex/go-grpc/internal/domain/v1/v1.interface"
+=======
+	pb "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/proto"
+	pri "gitee.com/vipex/go-grpc/internal/domain/interface"
+>>>>>>> remotes/origin/single
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-micro/v2/registry/etcd"
@@ -24,7 +29,7 @@ func main() {
 
 	userClient := v1_interface.NewUserGrpcService("cc.vipex.service.o2", service.Client())
 
-	rsp, err := userClient.Login(context.TODO(), &v1_proto.User{
+	rsp, err := userClient.Login(context.TODO(), &pb.User{
 		User: "admin", Pswd: "654321",
 	})
 

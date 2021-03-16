@@ -3,7 +3,11 @@
 
 package v1_interface
 
+<<<<<<< HEAD:internal/domain/v1/v1.interface/user_micro.pb.go
 import v1_proto "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto"
+=======
+import pb "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/proto"
+>>>>>>> remotes/origin/single:internal/domain/interface/user_micro.pb.go
 
 import (
 	fmt "fmt"

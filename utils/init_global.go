@@ -3,7 +3,11 @@ package utils
 import (
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+<<<<<<< HEAD
 	v1_dao "gitee.com/vipex/go-grpc/internal/domain/v1/v1.dao" // 
+=======
+	"gitee.com/vipex/go-grpc/internal/domain/dao" // 
+>>>>>>> remotes/origin/single
 	"sync"
 )
 
@@ -25,8 +29,13 @@ func InitGlobal() {
 	_globalDef["configs"] = configs; globalDef = &_globalDef; inited = true // 
 }
 
+<<<<<<< HEAD
 func GetAppConfigs() *v1_dao.AppConfigs {
 	if globalDef == nil { InitGlobal() }; return (*globalDef)["configs"].(*v1_dao.AppConfigs)
+=======
+func GetAppConfigs() *dao.AppConfigs {
+	if globalDef == nil { InitGlobal() }; return (*globalDef)["configs"].(*dao.AppConfigs)
+>>>>>>> remotes/origin/single
 }
 
 func GetGlobal() *map[string]interface{} {
