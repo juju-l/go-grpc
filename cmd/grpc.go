@@ -17,8 +17,10 @@ func main() {
 	lis, _ := net.Listen("tcp", listenAddr)
 
 	s := grpc.NewServer()
-	pri.RegisterUserGrpcServer(s, &srv.UserServiceGrpc{})
-	reflection.Register(s)
+	pri.RegisterUserGrpcServer(s, &srv.UserServiceGrpc{}) // 注册服务
+
+
+	reflection.Register(s) // 添加反射的注册，给 grpcui 提供入口
 
 	s.Serve(lis) // 
 }
