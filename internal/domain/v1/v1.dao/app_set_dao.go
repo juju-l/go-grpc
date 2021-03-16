@@ -1,4 +1,4 @@
-package dao
+package v1_dao
 
 import (
 	"gorm.io/driver/postgres"
