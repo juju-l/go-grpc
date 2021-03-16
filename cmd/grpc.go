@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	v1_interface "gitee.com/vipex/go-grpc/internal/domain/v1/v1.interface"
-	v1_service "gitee.com/vipex/go-grpc/internal/service/v1"
+	pri "gitee.com/vipex/go-grpc/internal/domain/interface"
+	srv "gitee.com/vipex/go-grpc/internal/service"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"net"
@@ -17,7 +17,7 @@ func main() {
 	lis, _ := net.Listen("tcp", listenAddr)
 
 	s := grpc.NewServer()
-	v1_interface.RegisterUserGrpcServer(s, &v1_service.UserServiceGrpc{}) // 注册服务
+	pri.RegisterUserGrpcServer(s, &srv.UserServiceGrpc{}) // 注册服务
 
 
 	reflection.Register(s) // 添加反射的注册，给 grpcui 提供入口

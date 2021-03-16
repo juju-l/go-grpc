@@ -2,9 +2,9 @@ syntax = "proto3";
 
 // import "api/proto/base/result.proto";
 
-option go_package = "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto;v1_proto";
+option go_package = "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/proto;pb";
 
-package v1.proto;
+package pb;
 
 message Result {
   int32 errCode = 1;

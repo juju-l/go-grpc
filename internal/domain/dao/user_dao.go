@@ -1,4 +1,4 @@
-package v1_dao
+package dao
 
 type UserReq struct {
 	User string `json:"user"`
