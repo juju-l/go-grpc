@@ -19,3 +19,4 @@ sed -i '/\/\/ Reference/,/var _ context/{/\/\/ Reference/!{/var _ context/!d}}' 
 sed -i '9,10d;18d' internal/domain/interface/*_grpc.pb.go # 老版本-兼容，需特殊执行该部分内容，才能在项目中使用
 
 sed -i -E -e 's/\*([A-Z])/\*pb.\1\2\3\4\5/g' -e 's/new\((.*)\)/new\(pb.\1\)/g' internal/domain/interface/*.pb.go; sed -i '/HandlerType/s/pb.//g' internal/domain/interface/*_grpc.pb.go # 老版本-兼容
+sed -i "/interfacepri/{s/$/\n\nimport pb \"gitee.com\/vipex\/go-grpc\/api\/vipex.cc\/oauth2\/v1\/v1.proto\"/g}" internal/domain/interface/*_micro.pb.go
