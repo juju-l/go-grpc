@@ -26,7 +26,7 @@ func (appConfigs *AppConfigs)GetTlsConfig(certFile, keyFile, caFile string) (*tl
 	return tlsConfig, nil
 }
 
-func (appConfigs *AppConfigs)GetOssClient() (*Client, error) {
+func (appConfigs *AppConfigs)GetOssClient() (*aliOss.Client, error) { // 
 	return aliOss.New(appConfigs.Oss.Endpoint, appConfigs.Oss.AccessKeyId, appConfigs.Oss.AccessKeySecret) // 获取 aliOss 客户端
 }
 
