@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	pri "gitee.com/vipex/go-grpc/internal/domain/interface"
-	srv "gitee.com/vipex/go-grpc/internal/service"
+	v1_interface "gitee.com/vipex/go-grpc/internal/domain/v1/v1.interface"
+	v1_service "gitee.com/vipex/go-grpc/internal/service/v1"
 	"gitee.com/vipex/go-grpc/utils"
 	"github.com/micro/go-micro/v2"
 	log "github.com/micro/go-micro/v2/logger"
@@ -18,9 +18,16 @@ func main() {
 	flag.StringVar(&listenAddr, "addr", ":8080", "app start listen addr...");flag.Parse() // 获取参数值
 	fmt.Println(listenAddr)
 
+	appConfigs := *utils.GetAppConfigs()
+	tlsConfig, err := appConfigs.GetTlsConfig("configs/.srv.crt", "configs/.srv-private.key", "configs/ca.crt")
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	// New Registry
 	etcdRegistry := etcd.NewRegistry(
-		registry.Addrs((*utils.GetAppConfigs()).Etcd),
+		registry.Addrs(appConfigs.Etcd),
+		registry.TLSConfig(tlsConfig),
 	)
 
 	// New Service
@@ -34,7 +41,7 @@ func main() {
 	service.Init()
 
 	// Register Handler
-	pri.RegisterUserGrpcHandler(service.Server(), new(srv.UserGrpcHandler))
+	v1_interface.RegisterUserGrpcHandler(service.Server(), new(v1_service.UserGrpcHandler))
 
 	// Run service
 	if err := service.Run(); err != nil {
