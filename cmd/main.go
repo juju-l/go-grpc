@@ -18,9 +18,16 @@ func main() {
 	flag.StringVar(&listenAddr, "addr", ":8080", "app start listen addr...");flag.Parse() // 获取参数值
 	fmt.Println(listenAddr)
 
+	appConfigs := *utils.GetAppConfigs()
+	tlsConfig, err := appConfigs.GetTlsConfig("configs/.srv.crt", "configs/.srv-private.key", "configs/ca.crt")
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	// New Registry
 	etcdRegistry := etcd.NewRegistry(
-		registry.Addrs((*utils.GetAppConfigs()).Etcd),
+		registry.Addrs(appConfigs.Etcd),
+		registry.TLSConfig(tlsConfig),
 	)
 
 	// New Service
