@@ -1,7 +1,7 @@
 package main
 
 import (
-	"flag"
+	// "flag"
 	v1_interface "gitee.com/vipex/go-grpc/internal/domain/v1/v1.interface"
 	v1_service "gitee.com/vipex/go-grpc/internal/service/v1"
 	"gitee.com/vipex/go-grpc/utils"
@@ -14,9 +14,9 @@ import (
 
 func main() {
 	// Service Listen Address Param
-	listenAddr := ""
-	flag.StringVar(&listenAddr, "addr", ":8080", "app start listen addr...");flag.Parse() // 获取参数值
-	fmt.Println(listenAddr)
+	// listenAddr := ""
+	// flag.StringVar(&listenAddr, "addr", ":8080", "app start listen addr...");flag.Parse() // 获取参数值
+	// fmt.Println(listenAddr)
 
 	appConfigs := *utils.GetAppConfigs()
 	tlsConfig, err := appConfigs.GetTlsConfig("configs/.srv.crt", "configs/.srv-private.key", "configs/ca.crt")
@@ -34,7 +34,8 @@ func main() {
 	service := micro.NewService(
 		micro.Name("cc.vipex.service.o2"),
 		micro.Version("latest"),
-		micro.Address(listenAddr),
+		// micro.Address(listenAddr),
+		micro.Address(":8080"),
 		micro.Registry(etcdRegistry),
 	)
 	// Initialise service
@@ -42,6 +43,7 @@ func main() {
 
 	// Register Handler
 	v1_interface.RegisterUserGrpcHandler(service.Server(), new(v1_service.UserGrpcHandler))
+	// v1_interface.Register*Handler(service.Server(), new(v1_service.*Handler)) // 注册其他服务
 
 	// Run service
 	if err := service.Run(); err != nil {
