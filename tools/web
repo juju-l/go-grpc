@@ -1,3 +1,5 @@
+..\go.mod
+..\go.sum
 ..\api\vipex.cc\oauth2\proto\user.proto
 ..\api\vipex.cc\oauth2\proto\user.pb.go
 ..\cmd\gw.go
@@ -5,6 +7,9 @@
 ..\cmd\grpc.go
 ..\cmd\main.go
 ..\configs\app_configs.yml
+..\configs\ca.crt
+..\configs\.srv.crt
+..\configs\.srv-private.key
 ..\internal\domain\dao\user_dao.go
 ..\internal\domain\dao\oss_configs_dao.go
 ..\internal\domain\dao\app_set_dao.go
