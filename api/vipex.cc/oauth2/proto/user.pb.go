@@ -7,6 +7,11 @@ import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
 
+import (
+	context "golang.org/x/net/context"
+	grpc "google.golang.org/grpc"
+)
+
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
@@ -215,6 +220,78 @@ func init() {
 	proto.RegisterType((*ErrorDes)(nil), "pb.ErrorDes")
 	proto.RegisterType((*BaseResult)(nil), "pb.BaseResult")
 	proto.RegisterType((*User)(nil), "pb.User")
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// UserGrpcClient is the client API for UserGrpc service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type UserGrpcClient interface {
+	Login(ctx context.Context, in *User, opts ...grpc.CallOption) (*BaseResult, error)
+}
+
+type userGrpcClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewUserGrpcClient(cc *grpc.ClientConn) UserGrpcClient {
+	return &userGrpcClient{cc}
+}
+
+func (c *userGrpcClient) Login(ctx context.Context, in *User, opts ...grpc.CallOption) (*BaseResult, error) {
+	out := new(BaseResult)
+	err := c.cc.Invoke(ctx, "/pb.UserGrpc/Login", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// UserGrpcServer is the server API for UserGrpc service.
+type UserGrpcServer interface {
+	Login(context.Context, *User) (*BaseResult, error)
+}
+
+func RegisterUserGrpcServer(s *grpc.Server, srv UserGrpcServer) {
+	s.RegisterService(&_UserGrpc_serviceDesc, srv)
+}
+
+func _UserGrpc_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(User)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserGrpcServer).Login(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.UserGrpc/Login",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserGrpcServer).Login(ctx, req.(*User))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _UserGrpc_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.UserGrpc",
+	HandlerType: (*UserGrpcServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Login",
+			Handler:    _UserGrpc_Login_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "user.proto",
 }
 
 func init() { proto.RegisterFile("user.proto", fileDescriptor_user_5737d3af2bb825d1) }
