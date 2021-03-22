@@ -92,6 +92,7 @@ unit_test:
 build_imgage:
   stage: build_imgage
   script:
+    - cp -Rf configs $BIN_PROJECT_PATH/
     - /bin/bash /stg/tools/docker-build-internet-images.sh
 
 k8s_deplay_app:
