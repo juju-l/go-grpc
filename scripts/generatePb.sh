@@ -5,7 +5,9 @@ apk add --no-cache git go protoc && git clone https://gitee.com/vipex/go-grpc.gi
 go get -u github.com/golang/protobuf/protoc-gen-go@v1.2.0 && `#go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1.0 && `go get -u github.com/micro/micro/v2/cmd/protoc-gen-micro@v2.9.3
 mv ~/go/bin/protoc-gen-micro ~/go/bin/protoc-gen-go-micro&&cp -f ~/go/bin/protoc-gen-go ~/go/bin/protoc-gen-go-grpc # 老版本-兼容,新版本不需要执行该行
 
-protoc -I api/vipex.cc/oauth2/v1/v1.proto --go_out=api/vipex.cc/oauth2/v1/v1.proto --go_opt=paths=source_relative api/vipex.cc/oauth2/v1/v1.proto/*.proto
+### protoc -I api/vipex.cc/oauth2/v1/v1.proto --go_out=api/vipex.cc/oauth2/v1/v1.proto --go_opt=paths=source_relative api/vipex.cc/oauth2/v1/v1.proto/*.proto
+protoc -I api/vipex.cc/oauth2/v1/v1.proto --go-grpc_out=plugins=grpc:api/vipex.cc/oauth2/v1/v1.proto --go-grpc_opt=paths=source_relative api/vipex.cc/oauth2/v1/v1.proto/*.proto # 开放客户端的注册必须有该部分内容，不能只有 pb 的定义
+
 protoc -I api/vipex.cc/oauth2/v1/v1.proto --go-micro_out=internal/domain/v1/v1.interface --plugin=protoc-gen-micro=~/go/bin/protoc-gen-go-micro --go-micro_opt=paths=source_relative api/vipex.cc/oauth2/v1/v1.proto/*.proto
 # protoc -I api/vipex.cc/oauth2/v1/v1.proto --go-grpc_out=internal/domain/v1/v1.interface --plugin=grpc --go-grpc_opt=paths=source_relative api/vipex.cc/oauth2/v1/v1.proto/*.proto # 新版 ok
 protoc -I api/vipex.cc/oauth2/v1/v1.proto --go-grpc_out=plugins=grpc:internal/domain/v1/v1.interface --go-grpc_opt=paths=source_relative api/vipex.cc/oauth2/v1/v1.proto/*.proto # 老版本-兼容执行该行
