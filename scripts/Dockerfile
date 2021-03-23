@@ -12,8 +12,9 @@ RUN apk add --no-cache protoc tree && \
 && mv $GOPATH/bin/protoc-gen-micro $GOPATH/bin/protoc-gen-go-micro \
 && cp -f $GOPATH/bin/protoc-gen-go $GOPATH/bin/protoc-gen-go-grpc
 
-COPY generatePb.sh ~/
+COPY generatePb.sh /root/
 RUN chmod 755 ~/generatePb.sh
+
 CMD [ "~/generatePb.sh" ]
 
 # docker run --rm -it -v `pwd`:/stg -e VERSIONSID= reg.vipex.cc:80/library/golang:1.16-alpine3.12.pb ~/generatePb.sh
