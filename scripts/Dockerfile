@@ -3,7 +3,7 @@ FROM reg.vipex.cc:80/library/golang:1.16-alpine3.12.diy
 MAINTAINER lj@vipex.cc
 # docker build --no-cache -f Dockerfile -t reg.vipex.cc:80/library/golang:1.16-alpine3.12.pb . # build image
 
-ENV PROTOPATH=api/vipex.cc GITHUB=https://gitee.com/vipex/go-grpc.git GITBRANCH=ver_template PACKAGESID=v1_proto VERSIONSID=v1/v1
+ENV PROTOPATH=api/vipex.cc GITHUB=https://gitee.com/vipex/go-grpc.git GITBRANCH=ver_template PACKAGESID=v1_proto VERSIONSID=v1/v1.
 
 RUN apk add --no-cache protoc tree && \
 	go get -u github.com/golang/protobuf/protoc-gen-go@v1.2.0 && \
