@@ -17,6 +17,6 @@ RUN chmod 755 ~/generatePb.sh
 
 CMD [ "~/generatePb.sh" ]
 
-# docker run --rm -it -v `pwd`:/stg -e VERSIONSID= reg.vipex.cc:80/library/golang:1.16-alpine3.12.pb ~/generatePb.sh
+# docker run --rm -it -v `pwd`:/stg reg.vipex.cc:80/library/golang:1.16-alpine3.12.pb ~/generatePb.sh
 # ls internal/domain/v1/v1.interface
 # tree api/vipex.cc
