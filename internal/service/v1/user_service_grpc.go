@@ -7,8 +7,8 @@ import (
 	v1_usecase "gitee.com/vipex/go-grpc/internal/usecase/v1"
 )
 
-func (rpc *UserServiceGrpc) Login(ctx context.Context, user *v1_proto.User) (*v1_proto.BaseResult, error) {
-	var rst = &v1_proto.BaseResult{}
+func (rpc *UserServiceGrpc) Login(ctx context.Context, user *v1_proto.User) (*v1_proto.UserResult, error) {
+	var rst = &v1_proto.UserResult{}
 	if r, err := new(v1_usecase.UserUseCase).Login(&v1_dao.UserReq{user.User, user.Pswd}); err == nil { // 
 		rst.Data = r
 	}
