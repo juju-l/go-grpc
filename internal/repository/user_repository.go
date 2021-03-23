@@ -2,7 +2,7 @@ package repository
 
 import (
 	"gitee.com/vipex/go-grpc/internal/domain/dao"
-	interfacepri "gitee.com/vipex/go-grpc/internal/domain/interface"
+	pri "gitee.com/vipex/go-grpc/internal/domain/interface"
 	"gitee.com/vipex/go-grpc/internal/domain/model"
 	"gitee.com/vipex/go-grpc/utils"
 )
@@ -16,5 +16,5 @@ func (s *UserRepository) Login(req *dao.UserReq) (bool, error) {
 }
 
 type UserRepository struct {
-	userInterfaceRepo interfacepri.UserInterfaceRepo
+	userInterfaceRepo pri.UserInterfaceRepo
 }

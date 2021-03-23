@@ -6,7 +6,7 @@ package pb // import "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/proto"
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import proto1 "gitee.com/vipex/go-grpc/api/vipex.cc/public/proto"
+import pub "gitee.com/vipex/go-grpc/api/vipex.cc/public/proto"
 
 import (
 	context "golang.org/x/net/context"
@@ -25,9 +25,9 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type UserResult struct {
-	Result               *proto1.Result   `protobuf:"bytes,1,opt,name=result,proto3" json:"result"`
+	Result               *pub.Result   `protobuf:"bytes,1,opt,name=result,proto3" json:"result"`
 	Data                 bool             `protobuf:"varint,2,opt,name=data,proto3" json:"data"`
-	ErrorDes             *proto1.ErrorDes `protobuf:"bytes,3,opt,name=errorDes,proto3" json:"errorDes"`
+	ErrorDes             *pub.ErrorDes `protobuf:"bytes,3,opt,name=errorDes,proto3" json:"errorDes"`
 	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
 	XXX_unrecognized     []byte           `json:"-"`
 	XXX_sizecache        int32            `json:"-"`
@@ -57,7 +57,7 @@ func (m *UserResult) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_UserResult proto.InternalMessageInfo
 
-func (m *UserResult) GetResult() *proto1.Result {
+func (m *UserResult) GetResult() *pub.Result {
 	if m != nil {
 		return m.Result
 	}
@@ -71,7 +71,7 @@ func (m *UserResult) GetData() bool {
 	return false
 }
 
-func (m *UserResult) GetErrorDes() *proto1.ErrorDes {
+func (m *UserResult) GetErrorDes() *pub.ErrorDes {
 	if m != nil {
 		return m.ErrorDes
 	}
