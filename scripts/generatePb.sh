@@ -19,7 +19,7 @@ cd $interfacePath && \
 && cd /stg
 
 sed -i -e "/package $PACKAGESID/{s/package $PACKAGESID/package $interfaceSid/g;s/ \/\/ import/\n\nimport $PACKAGESID/g}" $interfacePath/*.pb.go # 替换包名和导入
-sed -i '/\/\/ Reference/,/var _ context/{/\/\/ Reference/!{/var _ context/!d}}' $interfacePath/*_grpc.pb.go; sed -i '9,10d;18d' $interfacePath/*_grpc.pb.go # 删除冗余的 pb 定义
+sed -i '/\/\/ Reference/,/var _ context/{/\/\/ Reference/!{/var _ context/!d}}' $interfacePath/*_grpc.pb.go; sed -i '9,11d' $interfacePath/*_grpc.pb.go # 删除冗余的 pb 定义
 
 sed -i -E -e "s/\*([A-Z])/\*$PACKAGESID.\1\2\3\4\5/g" -e "s/new\((.*)\)/new\($PACKAGESID.\1\)/g" $interfacePath/*.pb.go # 替换对象引用
 	sed -i "/HandlerType/s/$PACKAGESID.//g" $interfacePath/*_grpc.pb.go # 恢复特定的 new 对象

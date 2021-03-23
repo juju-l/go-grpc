@@ -6,13 +6,13 @@ package v1_interface
 import v1_proto "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto"
 
 import proto "github.com/golang/protobuf/proto"
-import v1 "gitee.com/vipex/go-grpc/api/vipex.cc/public/v1/v1.proto"
 
 import (
 	context "golang.org/x/net/context"
 	grpc "google.golang.org/grpc"
 )
 
+// Reference imports to suppress errors if they are not otherwise used.
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
 var _ grpc.ClientConn
