@@ -6,7 +6,6 @@ package v1_proto // import "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.pr
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import v1 "gitee.com/vipex/go-grpc/api/vipex.cc/public/v1/v1.proto"
 
 import (
 	context "golang.org/x/net/context"
