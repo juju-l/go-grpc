@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+// import "api/proto/base/result.proto";
+
+option go_package = "gitee.com/vipex/go-grpc/api/vipex.cc/public/v1/v1.proto;v1_proto";
+
+package v1.proto;
+
+message Result {
+  int32 errCode = 1;
+  string errMsg = 2;
+}
+
+message ErrorDes {
+  string userMsg = 1;
+  string codeMsg = 2;
+}
+
+// message BaseResult {
+//   Result result = 1;
+//   bool data = 2;
+//   ErrorDes errorDes = 3;
+// }
+
+// service TestGrpc {
+//   rpc Test (Test) returns (BaseResult) {}
+// }
+
+// message Test {
+//   string Test1 = 1;
+//   string Test = 2;
+// }

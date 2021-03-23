@@ -7,12 +7,12 @@ import (
 	v1_usecase "gitee.com/vipex/go-grpc/internal/usecase/v1"
 )
 
-func (rpc *UserGrpcHandler) Login(ctx context.Context, user *v1_proto.User, baseResult *v1_proto.BaseResult) error {
-	// var rst = &v1_proto.BaseResult{}
+func (rpc *UserGrpcHandler) Login(ctx context.Context, user *v1_proto.User, userResult *v1_proto.UserResult) error {
+	// var rst = &v1_proto.UserResult{}
 	if r, err := new(v1_usecase.UserUseCase).Login(&v1_dao.UserReq{user.User, user.Pswd}); err == nil {
-		/*rst*/baseResult.Data = r
+		/*rst*/userResult.Data = r
 	}
-	/*baseResult = rst; */return nil
+	/*userResult = rst; */return nil
 }
 
 type UserGrpcHandler struct {
