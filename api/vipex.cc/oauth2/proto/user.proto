@@ -1,29 +1,20 @@
 syntax = "proto3";
 
 // import "api/proto/base/result.proto";
+import "api/vipex.cc/public/proto/apiResult.proto";
 
 option go_package = "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/proto;pb";
 
 package pb;
 
-message Result {
-  int32 errCode = 1;
-  string errMsg = 2;
-}
-
-message ErrorDes {
-  string userMsg = 1;
-  string codeMsg = 2;
-}
-
-message BaseResult {
+message UserResult {
   Result result = 1;
   bool data = 2;
   ErrorDes errorDes = 3;
 }
 
 service UserGrpc {
-  rpc Login (User) returns (BaseResult) {}
+  rpc Login (User) returns (UserResult) {}
 }
 
 message User {
