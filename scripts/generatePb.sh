@@ -9,11 +9,13 @@ pbList=($(ls ${PROTOPATH}))
 
 for pb in ${pbList[@]}; do
 			rm -f ${PROTOPATH}/$pb/${VERSIONSID}proto/*.pb.go
+
 	protoc -I . --go-grpc_out=plugins=grpc:. --go-grpc_opt=paths=source_relative ${PROTOPATH}/$pb/${VERSIONSID}proto/*.proto
 	protoc -I . --go-micro_out=. --plugin=protoc-gen-micro=$GOPATH/bin/protoc-gen-go-micro --go-micro_opt=paths=source_relative ${PROTOPATH}/$pb/${VERSIONSID}proto/*.proto
 	cp -f ${PROTOPATH}/$pb/${VERSIONSID}proto/*.pb*go $interfacePath/
-	# protoc -I . --go_out=. --go_opt=paths=source_relative ${PROTOPATH}/$pb/${VERSIONSID}proto/*.proto
-			sed -i 's/,omitempty//g' ${PROTOPATH}/$pb/${VERSIONSID}proto/*.pb.go
+			# protoc -I . --go_out=. --go_opt=paths=source_relative ${PROTOPATH}/$pb/${VERSIONSID}proto/*.proto
+
+	sed -i -e 's/,omitempty//g' -e 's/proto1/pub/g' ${PROTOPATH}/$pb/${VERSIONSID}proto/*.pb.go
 done
 
 cd $interfacePath && \
