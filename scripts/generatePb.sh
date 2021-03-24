@@ -9,7 +9,7 @@ pbList=($(ls ${PROTOPATH}))
 
 for pb in ${pbList[@]}; do
 	pkgPrefix=$(echo ${GITHUB}|sed 's#https://##g'|sed 's#.git##g')/${PROTOPATH}/$pb/${VERSIONSID}proto
-			rm -f ${PROTOPATH}/$pb/${VERSIONSID}proto/*.pb.go
+			rm -f ${PROTOPATH}/$pb/${VERSIONSID}proto/*.pb*go
 
 	protoc -I . --go-grpc_out=plugins=grpc:. --go-grpc_opt=paths=source_relative ${PROTOPATH}/$pb/${VERSIONSID}proto/*.proto
 	protoc -I . --go-micro_out=. --plugin=protoc-gen-micro=$GOPATH/bin/protoc-gen-go-micro --go-micro_opt=paths=source_relative ${PROTOPATH}/$pb/${VERSIONSID}proto/*.proto
@@ -23,6 +23,9 @@ done
 cd $interfacePath && \
 	ls |grep micro|cut -d '.' -f 1|xargs -I {} mv {}.pb.micro.go {}_micro.pb.go && ls |grep -v _|cut -d '.' -f 1|xargs -I {} mv {}.pb.go {}_grpc.pb.go \
 && cd /stg
+
+
+echo "package $interfaceSid" > $interfacePath/apiResult_grpc.pb.go; echo "package $interfaceSid" > $interfacePath/apiResult_micro.pb.go # 置空，否则影响 31 行
 
 sed -i -e "/package $PACKAGESID/{s/package $PACKAGESID/package $interfaceSid/g;s/ \/\/ import/\n\nimport $PACKAGESID/g}" $interfacePath/*_grpc.pb.go # 替换包名和导入
 sed -i '/\/\/ Reference/,/var _ context/{/\/\/ Reference/!{/var _ context/!d}}' $interfacePath/*_grpc.pb.go; sed -i '9,11d;18d' $interfacePath/*_grpc.pb.go # 删除冗余的 pb 定义
