@@ -8,7 +8,7 @@ rm -f $interfacePath/*.pb.go
 pbList=($(ls ${PROTOPATH}))
 
 for pb in ${pbList[@]}; do
-	pkgPrefix=$(echo ${GITHUB}|sed 's#https://##g'|sed 's#.git##g')/${PROTOPATH}/$pb/${VERSIONSID}proto
+	pkgPrefix=$(echo ${GITHUB}|sed 's#https://##g'|sed 's#.git$##g')/${PROTOPATH}/$pb/${VERSIONSID}proto
 			rm -f ${PROTOPATH}/$pb/${VERSIONSID}proto/*.pb*go
 
 	protoc -I . --go-grpc_out=plugins=grpc:. --go-grpc_opt=paths=source_relative ${PROTOPATH}/$pb/${VERSIONSID}proto/*.proto
