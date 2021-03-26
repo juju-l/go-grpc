@@ -25,7 +25,7 @@ message OssPutRst {
 
 message OssResult {
   Result result = 1;
-  repeated string url = 2;
+  Oss data = 2;
   ErrorDes errorDes = 3;
 }
 
@@ -35,5 +35,5 @@ service OssGrpc {
 }
 
 message Oss {
-  string url = 1;
+  repeated string url = 1;
 }
