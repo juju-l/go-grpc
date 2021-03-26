@@ -9,7 +9,7 @@ import (
 	"log"
 )
 
-func (s *UserRepository) Put(req *v1_dao.OssPutReq) (bool, error) {
+func (s *OssRepository) Put(req *v1_dao.OssPutReq) (bool, error) {
 	var client, err = utils.GetAppConfigs().GetOssClient(); log.Println(err)
 		bucket, err := client.Bucket(req.BucketName); log.Println(err)
 		objectAcl := oss.ObjectACL(oss.ACLPublicRead)
@@ -19,7 +19,7 @@ func (s *UserRepository) Put(req *v1_dao.OssPutReq) (bool, error) {
 	return true, nil
 }
 
-func (s *UserRepository) Get(req *v1_dao.OssGetReq) (*v1_dao.Oss, error) {
+func (s *OssRepository) Get(req *v1_dao.OssGetReq) (*v1_dao.Oss, error) {
 	var client, err = utils.GetAppConfigs().GetOssClient(); log.Println(err)
 	var objKeylist = &v1_dao.Oss{}
 		bucket, err := client.Bucket(req.BucketName); log.Println(err)
