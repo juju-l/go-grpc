@@ -18,6 +18,7 @@ func main() {
 
 	s := grpc.NewServer()
 	v1_interface.RegisterUserGrpcServer(s, &v1_service.UserServiceGrpc{}) // 注册服务
+	v1_interface.RegisterOssGrpcServer(s, &v1_service.OssServiceGrpc{})
 
 
 	reflection.Register(s) // 添加反射的注册，给 grpcui 提供入口

@@ -19,7 +19,7 @@ message UserResult {
 }
 
 service UserGrpc {
-  rpc Login (User) returns (UserResult) {}
+  rpc Login (UserLoginReq) returns (UserResult) {}
 }
 
 message User {
