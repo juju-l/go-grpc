@@ -1,6 +1,10 @@
 package v1_dao
 
-type UserReq struct {
+type UserLoginReq struct {
 	User string `json:"user"`
 	Pswd string `json:"pswd"`
+}
+
+type User struct {
+	User string `json:"user"`
 }
