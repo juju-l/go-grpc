@@ -3,11 +3,11 @@
 
 package interfacepri
 
-import pb "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/proto"
+import pb "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/oauth2/proto"
 
 import (
 	fmt "fmt"
-	_ "gitee.com/vipex/go-grpc/api/vipex.cc/public/proto"
+	_ "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/public/proto"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
 )

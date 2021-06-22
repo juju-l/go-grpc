@@ -1,9 +1,9 @@
 package usecase
 
 import (
-	"gitee.com/vipex/go-grpc/internal/domain/dao"
-	pri "gitee.com/vipex/go-grpc/internal/domain/interface"
-	"gitee.com/vipex/go-grpc/internal/repository"
+	"codeup.aliyun.com/vipex/go-grpc/internal/domain/dao"
+	pri "codeup.aliyun.com/vipex/go-grpc/internal/domain/interface"
+	"codeup.aliyun.com/vipex/go-grpc/internal/repository"
 )
 
 func (use *UserUseCase) Login(req *dao.UserReq) (bool, error) {

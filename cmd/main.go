@@ -2,9 +2,9 @@ package main
 
 import (
 	// "flag"
-	pri "gitee.com/vipex/go-grpc/internal/domain/interface"
-	srv "gitee.com/vipex/go-grpc/internal/service"
-	"gitee.com/vipex/go-grpc/utils"
+	pri "codeup.aliyun.com/vipex/go-grpc/internal/domain/interface"
+	srv "codeup.aliyun.com/vipex/go-grpc/internal/service"
+	"codeup.aliyun.com/vipex/go-grpc/utils"
 	"github.com/micro/go-micro/v2"
 	log "github.com/micro/go-micro/v2/logger"
 	"github.com/micro/go-micro/v2/registry"

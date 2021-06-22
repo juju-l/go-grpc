@@ -2,7 +2,7 @@ syntax = "proto3";
 
 // import "api/proto/base/result.proto";
 
-option go_package = "gitee.com/vipex/go-grpc/api/vipex.cc/public/proto;pb";
+option go_package = "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/public/proto;pb";
 
 package pb;
 
