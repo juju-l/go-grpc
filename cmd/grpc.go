@@ -2,8 +2,8 @@ package main
 
 import (
 	"flag"
-	v1_interface "gitee.com/vipex/go-grpc/internal/domain/v1/v1.interface"
-	v1_service "gitee.com/vipex/go-grpc/internal/service/v1"
+	v1_interface "codeup.aliyun.com/vipex/go-grpc/internal/domain/v1/v1.interface"
+	v1_service "codeup.aliyun.com/vipex/go-grpc/internal/service/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"net"

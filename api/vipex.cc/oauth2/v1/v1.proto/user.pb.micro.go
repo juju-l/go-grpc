@@ -5,7 +5,7 @@ package v1_proto
 
 import (
 	fmt "fmt"
-	_ "gitee.com/vipex/go-grpc/api/vipex.cc/public/v1/v1.proto"
+	_ "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/public/v1/v1.proto"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
 )
