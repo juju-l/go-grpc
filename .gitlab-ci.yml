@@ -78,15 +78,15 @@ stages:
 build_bin:
   stage: build_pkg
   script:
-    # - go build -o $BIN_PROJECT_PATH/ -ldflags "-s -w" -tags "-tag v1.0.0" cmd/main.go # ÍêÕû²ÎÊı
+    # - go build -o $BIN_PROJECT_PATH/ -ldflags "-s -w" -tags "-tag v1.0.0" cmd/main.go # å®Œæ•´å‚æ•°
     - go build -o $BIN_PROJECT_PATH/$CI_PROJECT_NAME cmd/main.go
 
 unit_test:
   stage: unit_test
   script:
     - sh -c "nohup $BIN_PROJECT_PATH/$CI_PROJECT_NAME > $BIN_PROJECT_PATH/test.log 2>&1 &"
-    # - if [ "$(curl http://127.0.0.1:8080/health -s|jq .status)" != "ok" ]; then exit; fi # »ñÈ¡ health api ÌØ¶¨·µ»ØÖµ×öÒÔĞ£Ñé(ĞèÒª curl,jq °ü)
-    # ¸ü¸´ÔÓµÄµ¥Ôª²âÊÔ½Å±¾ÔÚ´Ë×Ô¶¨Òå»òÕßĞŞ¸ÄÏàÓ¦µÄ configmap£¬¶¨ÒåÈçÏÂ½Å±¾£º
+    # - if [ "$(curl http://127.0.0.1:8080/health -s|jq .status)" != "ok" ]; then exit; fi # è·å– health api ç‰¹å®šè¿”å›å€¼åšä»¥æ ¡éªŒ(éœ€è¦ curl,jq åŒ…)
+    # æ›´å¤æ‚çš„å•å…ƒæµ‹è¯•è„šæœ¬åœ¨æ­¤è‡ªå®šä¹‰æˆ–è€…ä¿®æ”¹ç›¸åº”çš„ configmapï¼Œå®šä¹‰å¦‚ä¸‹è„šæœ¬ï¼š
     # - sh /stg/tools/util_test_health_check.sh
 
 build_imgage:
