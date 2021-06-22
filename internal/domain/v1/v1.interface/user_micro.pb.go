@@ -3,11 +3,11 @@
 
 package v1_interface
 
-import v1_proto "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto"
+import v1_proto "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto"
 
 import (
 	fmt "fmt"
-	_ "gitee.com/vipex/go-grpc/api/vipex.cc/public/v1/v1.proto"
+	_ "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/public/v1/v1.proto"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
 )

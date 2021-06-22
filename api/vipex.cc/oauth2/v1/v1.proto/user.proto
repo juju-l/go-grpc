@@ -3,7 +3,7 @@ syntax = "proto3";
 // import "api/proto/base/result.proto";
 import "api/vipex.cc/public/v1/v1.proto/apiResult.proto";
 
-option go_package = "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto;v1_proto";
+option go_package = "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.proto;v1_proto";
 
 package v1.proto;
 

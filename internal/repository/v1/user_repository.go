@@ -1,10 +1,10 @@
 package v1_repoistory
 
 import (
-	v1_dao "gitee.com/vipex/go-grpc/internal/domain/v1/v1.dao"
-	v1_interface "gitee.com/vipex/go-grpc/internal/domain/v1/v1.interface"
-	v1_model "gitee.com/vipex/go-grpc/internal/domain/v1/v1.model"
-	"gitee.com/vipex/go-grpc/utils"
+	v1_dao "codeup.aliyun.com/vipex/go-grpc/internal/domain/v1/v1.dao"
+	v1_interface "codeup.aliyun.com/vipex/go-grpc/internal/domain/v1/v1.interface"
+	v1_model "codeup.aliyun.com/vipex/go-grpc/internal/domain/v1/v1.model"
+	"codeup.aliyun.com/vipex/go-grpc/utils"
 )
 
 func (s *UserRepository) Login(req *v1_dao.UserLoginReq) (*v1_dao.User, error) {

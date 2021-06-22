@@ -1,9 +1,9 @@
 package v1_usecase
 
 import (
-	v1_dao "gitee.com/vipex/go-grpc/internal/domain/v1/v1.dao"
-	v1_interface "gitee.com/vipex/go-grpc/internal/domain/v1/v1.interface"
-	v1_repoistory "gitee.com/vipex/go-grpc/internal/repository/v1"
+	v1_dao "codeup.aliyun.com/vipex/go-grpc/internal/domain/v1/v1.dao"
+	v1_interface "codeup.aliyun.com/vipex/go-grpc/internal/domain/v1/v1.interface"
+	v1_repoistory "codeup.aliyun.com/vipex/go-grpc/internal/repository/v1"
 )
 
 func (use *OssUseCase) Put(req *v1_dao.OssPutReq) (bool, error) {

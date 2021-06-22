@@ -2,9 +2,9 @@ package v1_repoistory
 
 import (
 	"bytes"
-	v1_dao "gitee.com/vipex/go-grpc/internal/domain/v1/v1.dao"
-	v1_interface "gitee.com/vipex/go-grpc/internal/domain/v1/v1.interface"
-	"gitee.com/vipex/go-grpc/utils"
+	v1_dao "codeup.aliyun.com/vipex/go-grpc/internal/domain/v1/v1.dao"
+	v1_interface "codeup.aliyun.com/vipex/go-grpc/internal/domain/v1/v1.interface"
+	"codeup.aliyun.com/vipex/go-grpc/utils"
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"log"
 )

@@ -2,9 +2,9 @@ package v1_service
 
 import (
 	"context"
-	v1_proto "gitee.com/vipex/go-grpc/api/vipex.cc/aliOss/v1/v1.proto"
-	v1_dao "gitee.com/vipex/go-grpc/internal/domain/v1/v1.dao"
-	v1_usecase "gitee.com/vipex/go-grpc/internal/usecase/v1"
+	v1_proto "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/aliOss/v1/v1.proto"
+	v1_dao "codeup.aliyun.com/vipex/go-grpc/internal/domain/v1/v1.dao"
+	v1_usecase "codeup.aliyun.com/vipex/go-grpc/internal/usecase/v1"
 )
 
 func (srv OssServiceGrpc) Put(ctx context.Context, req *v1_proto.OssPutReq) (*v1_proto.OssPutRst, error) {

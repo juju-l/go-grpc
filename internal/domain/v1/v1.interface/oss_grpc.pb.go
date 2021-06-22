@@ -3,7 +3,7 @@
 
 package v1_interface
 
-import v1_proto "gitee.com/vipex/go-grpc/api/vipex.cc/aliOss/v1/v1.proto"
+import v1_proto "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/aliOss/v1/v1.proto"
 
 import proto "github.com/golang/protobuf/proto"
 
