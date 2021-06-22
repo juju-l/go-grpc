@@ -3,7 +3,7 @@ package utils
 import (
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
-	"gitee.com/vipex/go-grpc/internal/domain/dao" // 
+	"codeup.aliyun.com/vipex/go-grpc/internal/domain/dao" // 
 	"github.com/shima-park/agollo"
 	"sync"
 )

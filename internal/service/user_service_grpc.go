@@ -2,9 +2,9 @@ package service
 
 import (
 	"context"
-	pb "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/proto"
-	"gitee.com/vipex/go-grpc/internal/domain/dao"
-	"gitee.com/vipex/go-grpc/internal/usecase"
+	pb "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/oauth2/proto"
+	"codeup.aliyun.com/vipex/go-grpc/internal/domain/dao"
+	"codeup.aliyun.com/vipex/go-grpc/internal/usecase"
 )
 
 func (rpc *UserServiceGrpc) Login(ctx context.Context, user *pb.User) (*pb.UserResult, error) {

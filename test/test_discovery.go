@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	pb "gitee.com/vipex/go-grpc/api/vipex.cc/oauth2/proto"
-	pri "gitee.com/vipex/go-grpc/internal/domain/interface"
+	pb "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/oauth2/proto"
+	pri "codeup.aliyun.com/vipex/go-grpc/internal/domain/interface"
 	"github.com/micro/go-micro/v2"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-micro/v2/registry/etcd"

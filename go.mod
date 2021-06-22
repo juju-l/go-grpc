@@ -1,4 +1,4 @@
-module gitee.com/vipex/go-grpc
+module codeup.aliyun.com/vipex/go-grpc
 
 go 1.16
 
