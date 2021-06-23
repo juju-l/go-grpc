@@ -7,22 +7,17 @@ option go_package = "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/oauth2/v1/v1.p
 
 package v1.proto;
 
-message UserLoginReq {
-  string user = 1;
-  string pswd = 2;
-}
-
 message UserResult {
   Result result = 1;
-  User data = 2;
+  bool data = 2;
   ErrorDes errorDes = 3;
 }
 
 service UserGrpc {
-  rpc Login (UserLoginReq) returns (UserResult) {}
+  rpc Login (User) returns (UserResult) {}
 }
 
 message User {
   string user = 1;
-  // string pswd = 2;
+  string pswd = 2;
 }

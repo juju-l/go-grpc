@@ -7,33 +7,17 @@ option go_package = "codeup.aliyun.com/vipex/go-grpc/api/vipex.cc/aliOss/v1/v1.p
 
 package v1.proto;
 
-message OssPutReq {
-  bytes reqFile = 1;
-  string objectKey = 2;
-  string bucketName = 3;
-}
-
-message OssGetReq {
-  string bucketName = 1;
-}
-
-message OssPutRst {
+message OssResult {
   Result result = 1;
   bool data = 2;
   ErrorDes errorDes = 3;
 }
 
-message OssResult {
-  Result result = 1;
-  Oss data = 2;
-  ErrorDes errorDes = 3;
-}
-
 service OssGrpc {
-  rpc Put (OssPutReq) returns (OssPutRst) {}
-  rpc Get (OssGetReq) returns (OssResult) {}
+  rpc Test (Oss) returns (OssResult) {}
 }
 
 message Oss {
-  repeated string url = 1;
+  string test1 = 1;
+  string test = 2;
 }

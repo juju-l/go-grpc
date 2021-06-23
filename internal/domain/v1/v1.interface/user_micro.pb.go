@@ -45,7 +45,7 @@ func NewUserGrpcEndpoints() []*api.Endpoint {
 // Client API for UserGrpc service
 
 type UserGrpcService interface {
-	Login(ctx context.Context, in *v1_proto.UserLoginReq, opts ...client.CallOption) (*v1_proto.UserResult, error)
+	Login(ctx context.Context, in *v1_proto.User, opts ...client.CallOption) (*v1_proto.UserResult, error)
 }
 
 type userGrpcService struct {
@@ -60,7 +60,7 @@ func NewUserGrpcService(name string, c client.Client) UserGrpcService {
 	}
 }
 
-func (c *userGrpcService) Login(ctx context.Context, in *v1_proto.UserLoginReq, opts ...client.CallOption) (*v1_proto.UserResult, error) {
+func (c *userGrpcService) Login(ctx context.Context, in *v1_proto.User, opts ...client.CallOption) (*v1_proto.UserResult, error) {
 	req := c.c.NewRequest(c.name, "UserGrpc.Login", in)
 	out := new(v1_proto.UserResult)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -73,12 +73,12 @@ func (c *userGrpcService) Login(ctx context.Context, in *v1_proto.UserLoginReq, 
 // Server API for UserGrpc service
 
 type UserGrpcHandler interface {
-	Login(context.Context, *v1_proto.UserLoginReq, *v1_proto.UserResult) error
+	Login(context.Context, *v1_proto.User, *v1_proto.UserResult) error
 }
 
 func RegisterUserGrpcHandler(s server.Server, hdlr UserGrpcHandler, opts ...server.HandlerOption) error {
 	type userGrpc interface {
-		Login(ctx context.Context, in *v1_proto.UserLoginReq, out *v1_proto.UserResult) error
+		Login(ctx context.Context, in *v1_proto.User, out *v1_proto.UserResult) error
 	}
 	type UserGrpc struct {
 		userGrpc
@@ -91,6 +91,6 @@ type userGrpcHandler struct {
 	UserGrpcHandler
 }
 
-func (h *userGrpcHandler) Login(ctx context.Context, in *v1_proto.UserLoginReq, out *v1_proto.UserResult) error {
+func (h *userGrpcHandler) Login(ctx context.Context, in *v1_proto.User, out *v1_proto.UserResult) error {
 	return h.UserGrpcHandler.Login(ctx, in, out)
 }

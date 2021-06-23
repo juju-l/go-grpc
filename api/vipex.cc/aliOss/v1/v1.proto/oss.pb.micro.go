@@ -43,8 +43,7 @@ func NewOssGrpcEndpoints() []*api.Endpoint {
 // Client API for OssGrpc service
 
 type OssGrpcService interface {
-	Put(ctx context.Context, in *OssPutReq, opts ...client.CallOption) (*OssPutRst, error)
-	Get(ctx context.Context, in *OssGetReq, opts ...client.CallOption) (*OssResult, error)
+	Test(ctx context.Context, in *Oss, opts ...client.CallOption) (*OssResult, error)
 }
 
 type ossGrpcService struct {
@@ -59,18 +58,8 @@ func NewOssGrpcService(name string, c client.Client) OssGrpcService {
 	}
 }
 
-func (c *ossGrpcService) Put(ctx context.Context, in *OssPutReq, opts ...client.CallOption) (*OssPutRst, error) {
-	req := c.c.NewRequest(c.name, "OssGrpc.Put", in)
-	out := new(OssPutRst)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ossGrpcService) Get(ctx context.Context, in *OssGetReq, opts ...client.CallOption) (*OssResult, error) {
-	req := c.c.NewRequest(c.name, "OssGrpc.Get", in)
+func (c *ossGrpcService) Test(ctx context.Context, in *Oss, opts ...client.CallOption) (*OssResult, error) {
+	req := c.c.NewRequest(c.name, "OssGrpc.Test", in)
 	out := new(OssResult)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -82,14 +71,12 @@ func (c *ossGrpcService) Get(ctx context.Context, in *OssGetReq, opts ...client.
 // Server API for OssGrpc service
 
 type OssGrpcHandler interface {
-	Put(context.Context, *OssPutReq, *OssPutRst) error
-	Get(context.Context, *OssGetReq, *OssResult) error
+	Test(context.Context, *Oss, *OssResult) error
 }
 
 func RegisterOssGrpcHandler(s server.Server, hdlr OssGrpcHandler, opts ...server.HandlerOption) error {
 	type ossGrpc interface {
-		Put(ctx context.Context, in *OssPutReq, out *OssPutRst) error
-		Get(ctx context.Context, in *OssGetReq, out *OssResult) error
+		Test(ctx context.Context, in *Oss, out *OssResult) error
 	}
 	type OssGrpc struct {
 		ossGrpc
@@ -102,10 +89,6 @@ type ossGrpcHandler struct {
 	OssGrpcHandler
 }
 
-func (h *ossGrpcHandler) Put(ctx context.Context, in *OssPutReq, out *OssPutRst) error {
-	return h.OssGrpcHandler.Put(ctx, in, out)
-}
-
-func (h *ossGrpcHandler) Get(ctx context.Context, in *OssGetReq, out *OssResult) error {
-	return h.OssGrpcHandler.Get(ctx, in, out)
+func (h *ossGrpcHandler) Test(ctx context.Context, in *Oss, out *OssResult) error {
+	return h.OssGrpcHandler.Test(ctx, in, out)
 }
