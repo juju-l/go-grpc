@@ -13,6 +13,6 @@ func main() {
 	listen, _ := net.Listen("tcp", ":8080")
 	s := grpc.NewServer()
 	v1_interface.RegisterUserGrpcServer(s, &v1_service.UserServiceGrpc{})
-	reflection.Register(s) // 反射
+	reflection.Register(s)
 	s.Serve(listen) 
 }
