@@ -12,7 +12,7 @@ require (
 	gorm.io/driver/postgres v1.0.8
 )
 
-require github.com/micro/go-micro/v2 v2.9.1 // api 核心框架
+// require github.com/micro/go-micro/v2 v2.9.1 // api 核心框架
 require gorm.io/gorm v1.21.3 // orm 框架
 require github.com/aliyun/aliyun-oss-go-sdk v2.1.6+incompatible 
 // require github.com/shima-park/agollo v1.2.10
