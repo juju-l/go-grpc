@@ -19,15 +19,15 @@ func main() {
 	// fmt.Println(listenAddr)
 
 	appConfigs := *utils.GetAppConfigs()
-	tlsConfig, err := appConfigs.GetTlsConfig("configs/.srv.crt", "configs/.srv-private.key", "configs/ca.crt")
-	if err != nil {
-		fmt.Println(err)
-	}
+	// tlsConfig, err := appConfigs.GetTlsConfig("configs/.srv.crt", "configs/.srv-private.key", "configs/ca.crt")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 
 	// New Registry
 	etcdRegistry := etcd.NewRegistry(
 		registry.Addrs(appConfigs.Etcd),
-		registry.TLSConfig(tlsConfig),
+		// registry.TLSConfig(tlsConfig),
 	)
 
 	// New Service

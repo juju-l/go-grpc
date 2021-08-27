@@ -1,13 +1,13 @@
 package v1_dao
 
 import (
-	"crypto/tls"
-	"crypto/x509"
+	// "crypto/tls"
+	// "crypto/x509"
 	aliOss "github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
-	"io/ioutil"
+	// "io/ioutil"
 )
 
 func (appConfigs *AppConfigs)GetCrudRepo() *gorm.DB { // 初始化 db
@@ -19,12 +19,12 @@ func (appConfigs *AppConfigs)GetCrudRepo() *gorm.DB { // 初始化 db
 	return db
 }
 
-func (appConfigs *AppConfigs)GetTlsConfig(certFile, keyFile, caFile string) (*tls.Config, error) { // 获取 tlsConfig
-	var tlsConfig = &tls.Config{}; tlsConfig.ClientAuth = tls.RequireAndVerifyClientCert; certPool := x509.NewCertPool() // 
-	reqCert, err := tls.LoadX509KeyPair(certFile, keyFile); if err != nil { return nil, nil }; tlsConfig.Certificates = []tls.Certificate{ reqCert }
-	caCrt, err := ioutil.ReadFile(caFile); if err != nil { return nil, nil }; certPool.AppendCertsFromPEM(caCrt); tlsConfig.RootCAs = certPool
-	return tlsConfig, nil
-}
+// func (appConfigs *AppConfigs)GetTlsConfig(certFile, keyFile, caFile string) (*tls.Config, error) { // 获取 tlsConfig
+// 	var tlsConfig = &tls.Config{}; tlsConfig.ClientAuth = tls.RequireAndVerifyClientCert; certPool := x509.NewCertPool() // 
+// 	reqCert, err := tls.LoadX509KeyPair(certFile, keyFile); if err != nil { return nil, nil }; tlsConfig.Certificates = []tls.Certificate{ reqCert }
+// 	caCrt, err := ioutil.ReadFile(caFile); if err != nil { return nil, nil }; certPool.AppendCertsFromPEM(caCrt); tlsConfig.RootCAs = certPool
+// 	return tlsConfig, nil
+// }
 
 func (appConfigs *AppConfigs)GetOssClient() (*aliOss.Client, error) { // 
 	return aliOss.New(appConfigs.Oss.Endpoint, appConfigs.Oss.AccessKeyId, appConfigs.Oss.AccessKeySecret) // 获取 aliOss 客户端
