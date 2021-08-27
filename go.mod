@@ -2,18 +2,10 @@ module codeup.aliyun.com/vipex/go-grpc
 
 go 1.16
 
-require google.golang.org/grpc v1.27.0 // direct
-replace google.golang.org/grpc => google.golang.org/grpc v1.26.0 // 
-
 require (
-	github.com/golang/protobuf v1.4.0
-	golang.org/x/net v0.0.0-20200520182314-0ba52f642ac2
-	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac
-	gopkg.in/yaml.v2 v2.2.4
-	gorm.io/driver/postgres v1.0.8
+	golang.org/x/net v0.0.0-20210825183410-e898025ed96a // indirect
+	golang.org/x/sys v0.0.0-20210823070655-63515b42dcdf // indirect
+	golang.org/x/text v0.3.7 // indirect
+	google.golang.org/genproto v0.0.0-20210825212027-de86158e7fda // indirect
+	google.golang.org/grpc v1.40.0 // indirect
 )
-
-// require github.com/micro/go-micro/v2 v2.9.1 // api 核心框架
-require gorm.io/gorm v1.21.3 // orm 框架
-require github.com/aliyun/aliyun-oss-go-sdk v2.1.6+incompatible 
-// require github.com/shima-park/agollo v1.2.10
