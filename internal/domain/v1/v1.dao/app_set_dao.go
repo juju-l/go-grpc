@@ -3,7 +3,7 @@ package v1_dao
 import (
 	// "crypto/tls"
 	// "crypto/x509"
-	aliOss "github.com/aliyun/aliyun-oss-go-sdk/oss"
+	// aliOss "github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
@@ -26,9 +26,9 @@ func (appConfigs *AppConfigs)GetCrudRepo() *gorm.DB { // 初始化 db
 // 	return tlsConfig, nil
 // }
 
-func (appConfigs *AppConfigs)GetOssClient() (*aliOss.Client, error) { // 
-	return aliOss.New(appConfigs.Oss.Endpoint, appConfigs.Oss.AccessKeyId, appConfigs.Oss.AccessKeySecret) // 获取 aliOss 客户端
-}
+// func (appConfigs *AppConfigs)GetOssClient() (*aliOss.Client, error) { // 
+// 	return aliOss.New(appConfigs.Oss.Endpoint, appConfigs.Oss.AccessKeyId, appConfigs.Oss.AccessKeySecret) // 获取 aliOss 客户端
+// }
 
 type AppConfigs struct {
 	Etcd      string    `json:"etcd"` //
