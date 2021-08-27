@@ -9,7 +9,7 @@ import (
 	log "github.com/micro/go-micro/v2/logger"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-micro/v2/registry/etcd"
-	"fmt"
+	// "fmt"
 )
 
 func main() {
