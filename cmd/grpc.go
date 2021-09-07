@@ -14,5 +14,5 @@ func main() {
 	s := grpc.NewServer()
 	v1_interface.RegisterUserGrpcServer(s, &v1_service.UserServiceGrpc{})
 	reflection.Register(s)
-	s.Serve(listen) 
+	s.Serve(listen)
 }
